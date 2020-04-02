@@ -4,6 +4,7 @@
 - [Repl.it repl](https://repl.it/@prophen/NavyUniformRoute)
 - [Hosted app](https://NavyUniformRoute--prophen.repl.co)
 - [GitHub repo](https://github.com/prophen/NavyUniformRoute)
+- [Original Private Repo](https://github.com/prophen/developer-relations-engineer-project)
 
 ## For reference
 - [Getting Started](https://docs.daily.co/docs/getting-started-1)
