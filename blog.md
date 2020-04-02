@@ -369,4 +369,4 @@ function updateParticipants() {
 
 ## Thanks for reading! 
 Check out a quick demo of hand raising in the gif below
-![raise your hand demo](https://p112.p2.n0.cdn.getcloudapp.com/items/L1ugjLEY/Screen%20Recording%202020-04-02%20at%2002.24%20AM.gif?v=6459fe652a33e56aeb752c3845fa7926)
+<img src="assets/raise-hand-demo.gif" alt="raise your hand demo" />
