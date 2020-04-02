@@ -110,10 +110,6 @@ The `local-participant-info` `<div>` shows your call status (user name and if yo
 3. The call frame
 
 For this app, the call frame has a designated space in the user interface. It's set up in the code below. In the JavaScript portion, we will reference this iframe to wrap the Daily-js call frame.
-
-![colorful illustrated people](https://user-images.githubusercontent.com/3941856/78086769-d201fb80-7373-11ea-9c7e-97769fa48738.png)
-> The example app has a cute illustration behind the `call-frame` `<iframe>`. It gets covered up once a call starts.
-
 ```HTML
             <div class="call-panel tile is-child notification is-light">
               <iframe
@@ -124,6 +120,9 @@ For this app, the call frame has a designated space in the user interface. It's 
               ></iframe>
             </div>
 ```
+![colorful illustrated people](https://user-images.githubusercontent.com/3941856/78086769-d201fb80-7373-11ea-9c7e-97769fa48738.png)
+> The example app has a cute illustration behind the `call-frame` `<iframe>`. It gets covered up once a call starts.
+
 > The [full sample app source code](https://repl.it/@prophen/NavyUniformRoute) is viewable on repl.it
 
 ## JavaScript time! Working with Daily-js
@@ -257,7 +256,7 @@ Remember, we communicate between the sample app and the callFrame using `callFra
 
 Every message sent sends the `localParticipant.handRaised` property value. The messages go out to all other participants and that's how they know if the local participant has raised or lowered their hand.
 
-The `setTimeout()` is added to make sure that the message doesn't send before the new caller has joined and can receive it. Messages are only delivered to participants in-call.
+The `setTimeout()`s are used to make sure that the message doesn't send before the new caller has joined and can receive it. Messages are only delivered to participants currently in a call.
 
 ```JavaScript
 async function raiseOrLowerHand() {
@@ -305,19 +304,24 @@ async function joinedMeeting(e) {
     </button>
     <p class="hand-state has-text-right">your hand is down</p>
 `;
-  await setTimeout(handState.broadcastLocalHandState, 2000);
-  await setTimeout(() => {
-    document.querySelector(".raise-hand-button").classList.toggle("hidden")
-  }, 2000)
+  await updateParticipants()
+  setTimeout(handState.broadcastLocalHandState, 2500)
+}
+
+async function participantJoined() {
+  localParticipant = { ...localParticipant };
+  await updateParticipants()
+  setTimeout(handState.broadcastLocalHandState, 2500)
 }
 ```
 
 ### See everyone else's hands up
 ![call participant list](https://user-images.githubusercontent.com/3941856/78181291-f532b680-7418-11ea-97c6-25d1961f4d29.png)
 
-The way our sample app knows if another caller's hand goes up is by receiving a message. When that message is received with the call participant's hand state we update the UI in `updateParticipants()`
+The way our sample app knows if another caller's hand goes up is by receiving a message. When that message is received with the call participant's hand state, we update the UI in `updateParticipants()`.
 
 `updateParticipants()` gets the current list of particpants from `callframe.participants()`, goes through each caller, checks if their hand is raised, and updates the UI accordingly.
+
 
 ```JavaScript
 function updateParticipants(e) {
@@ -359,5 +363,6 @@ function updateParticipants(e) {
 ```
 > The [full sample app source code](https://repl.it/@prophen/NavyUniformRoute) is viewable on repl.it
 
-## Thanks for reading this
-I hope you found it useful.
+## Thanks for reading! 
+Check out a quick demo of hand raising in the gif below
+![raise your hand demo](https://p112.p2.n0.cdn.getcloudapp.com/items/L1ugjLEY/Screen%20Recording%202020-04-02%20at%2002.24%20AM.gif?v=6459fe652a33e56aeb752c3845fa7926)

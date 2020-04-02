@@ -82,14 +82,14 @@ async function joinedMeeting(e) {
     </button>
     <p class="hand-state has-text-right">your hand is down</p>
 `;
-  updateParticipants();
-
+  await updateParticipants();
+  setTimeout(handState.broadcastLocalHandState, 2500)
 }
 
-async function participantJoined(e) {
+async function participantJoined() {
   localParticipant = { ...localParticipant };
-  updateParticipants();
- 
+  await updateParticipants();
+  setTimeout(handState.broadcastLocalHandState, 2500)
 }
 
 function leftMeeting(e) {
@@ -136,7 +136,6 @@ function updateParticipants() {
       </div>`;
     list.append(li);
   });
-  return setTimeout(handState.broadcastLocalHandState, 3000)
 }
 async function run() {
   // setting up for conditional rendering
