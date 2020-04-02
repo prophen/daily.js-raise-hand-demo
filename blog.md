@@ -157,7 +157,8 @@ let localParticipant = {
 ```JavaScript
 let handState = {
   list: [],
-  // sends the current hand state without raising or lowering the hand
+  // sends the current hand state without raising
+  // or lowering the hand
   broadcastLocalHandState() {
     let data = {
       handRaised: localParticipant.handRaised,
@@ -175,7 +176,8 @@ let handState = {
     this.list.splice(this.list.indexOf(e.data.session_id), 1);
     updateParticipants();
   },
-  // gets called when a message is received, adds the session id and the hand state to this list
+  // gets called when a message is received, adds
+  // the session id and the hand state to this list
   updateList(e) {
     e.data.handRaised
       ? handState.addHandToList(e)
@@ -189,11 +191,13 @@ let handState = {
     };
   }
 };
+```
 
 ### Bring in the call frame
 When a caller clicks the Join Call button, `run()` is called and a Daily.co call is started and joined.
  
 Here's where you need that Daily.co room URL. Initialize the room variable using this line:
+
 ```JavaScript
   let room = { url: "https://popschools.daily.co/qOrbXQ3zJZC7o7aH8ycI" };
 ```
@@ -324,7 +328,7 @@ The way our sample app knows if another caller's hand goes up is by receiving a 
 
 
 ```JavaScript
-function updateParticipants(e) {
+function updateParticipants() {
   // the local user has their own hand state. Other callers raised hands are saved in the handState list
   let raisedHands = handState.list.map(caller => caller.session_id);
   let ps = callFrame.participants();
