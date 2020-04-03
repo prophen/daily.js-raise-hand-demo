@@ -1,3 +1,8 @@
+>![image](https://user-images.githubusercontent.com/3941856/78284119-c0d00080-74d3-11ea-88c6-23a22910be5d.png)
+
+>My suggestions start between the end of "Mobile support" and the "How to contact us" section
+_____
+
 ## REST API Quickstart
 
 To get started with creating Daily.co API rooms, sign up for a free Daily.co account and head to the [Developers tab](https://dashboard.daily.co/?lstate=developers) in your dashboard. You will need your API key to create rooms at your Daily.co subdomain using the REST API.
